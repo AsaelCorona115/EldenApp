@@ -1,0 +1,200 @@
+.App{
+  background-color: black;
+}
+
+.offcanvas-header,
+.offCanvasBody{
+ background-color: black;
+ color: #BE9457;
+}
+
+.navbarContainer{
+  position: sticky;
+  border-bottom: solid 2px #BE9457;
+  top: 0%;
+  background-color: black;
+  z-index: 1;
+}
+
+
+.offCanvasLink,
+.offCanvasLink:visited{
+  font-family: "Marcellus SC";
+  color: aliceblue;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.navLink,
+.navLink:visited{
+  font-family: "Marcellus SC";
+  color: aliceblue;
+  text-decoration: none;
+  font-size: 1.3rem;
+  margin-right: 4rem;
+  text-align: center;
+  line-height: 20px;
+}
+
+.navLink:hover{
+  text-decoration: underline;
+}
+.btn-close{
+  background-color: #BE9457;
+}
+
+.NavbarImg{
+  max-width: 50%;
+}
+
+.ItemCard{
+  background: rgb(242,242,242);
+background: linear-gradient(0deg, rgba(242,242,242,0.13) 0%, rgba(190,148,87,0.19) 33%, rgba(0,0,0,0.7875525210084033) 100%);
+  box-shadow: 0 8px 32px 0 rgba(17, 18, 19, 0.2);
+  backdrop-filter: blur( 8px );
+  -webkit-backdrop-filter: blur( 8px );
+  border-radius: 5px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.ItemCardShort{
+  background: rgb(242,242,242);
+  background: linear-gradient(0deg, rgba(242,242,242,0.13) 0%, rgba(190,148,87,0.19) 33%, rgba(0,0,0,0.7875525210084033) 100%);
+  box-shadow: 0 8px 32px 0 rgba(17, 18, 19, 0.2);
+  backdrop-filter: blur( 8px );
+  -webkit-backdrop-filter: blur( 8px );
+  border-radius: 5px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.singleItemTop{
+  height: 200px;
+}
+
+.subName{
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cardImg{
+  width: 90%;
+  max-height: 80%;
+}
+
+.cardTop{
+  height: 300px;
+}
+
+.cardBottom{
+  height: 20%;
+  display: flex;
+  align-items: center;
+}
+
+
+
+.objectTitle{
+  float: right;
+  clear: both;
+}
+.footer h1{
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+
+
+.loaderScreen{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.singleItem{
+  min-height: 60vh;
+}
+
+.landingCover{
+  background-color: black;
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  height: 100%;
+  z-index: 1;
+  margin: auto;
+}
+
+.landingLogo{
+  height: 55vh
+}
+
+.subtitle,
+.continueButton{
+  font-family: "Marcellus SC";
+  border-radius: 0;
+}
+
+.Header1{
+  height: 83vh;
+  display: flex;
+  align-items: center;
+}
+
+.HeaderMainText{
+  margin-top: 10px;
+  color: #BE9457;
+  font-weight: bold;
+  text-transform:uppercase;
+}
+
+.HeaderSubText{
+  margin-top: 30px;
+  color: #BE9457;
+  text-transform:uppercase;
+  font-family: "Marcellus SC";
+}
+
+.ruler{
+  color: #BE9457;
+  margin: 15px 0px;
+}
+.GeneralText{
+  font-family: 'Roboto', sans-serif;
+}
+
+.itemTypeContainer,
+.itemsContainer{
+  border-radius: 12px;
+  padding: 50px;
+  background: rgb(28,27,27);
+  background: radial-gradient(circle, rgba(28,27,27,1) 49%, rgba(32, 32, 32, 0.788) 100%);
+}
+
+.mainItemBackground{
+  background-color: rgb(46, 45, 45,0.8);
+  position:fixed;
+  top: 0%;
+  left: 0;
+  height: 100%;
+  z-index: 2;
+}
+
+.x{
+  border: 0px;
+  padding: 0;
+}
+
+
+.mainItemContainer{
+
+}
