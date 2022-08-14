@@ -1,33 +1,45 @@
+// React/Bootstrap Components
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import Spinner from "react-bootstrap/Spinner";
+// React hooks
 import { useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+
+// Custom hooks
 import useFetch from "../components/customHooks/useFetch";
+import useDidMountEffect from "../components/customHooks/useDidMountEffect";
+
+// Custom Components
 import ItemCard from "../components/ItemCard";
-import Button from "react-bootstrap/Button";
+import ItemDetails from "../components/ItemDetails";
 
 const ItemsPage = (props) => {
   // Pulling Item type from the url
   const { ItemType } = useParams();
   //   States
-  const [items, setItems] = useState(null);
   const [focusedItem, setFocusedItem] = useState(null);
   const [mainCardShow, setMainCardShow] = useState("d-none");
 
   //   Setting up API url
   const url = `https://eldenring.fanapis.com/api/${ItemType}?limit=150`;
-
   const { data, loading, error } = useFetch(url);
 
+  // Close and open functions for card details
   const handleClose = () => {
     setMainCardShow("d-none");
   };
-  const handleShow = (e) => {
-    setMainCardShow("d-block");
-    console.log(e.target.parentNode.parentNode.parentNode.parentNode.key);
-  };
+
+  const firstLoad = useRef(false);
+
+  useEffect(() => {
+    if (firstLoad.current) {
+      setMainCardShow("d-block");
+    } else {
+      firstLoad.current = true;
+    }
+  }, [focusedItem]);
 
   const loadingScreen = () => {
     return (
@@ -42,6 +54,12 @@ const ItemsPage = (props) => {
   const renderItems = () => {
     return (
       <>
+        <ItemDetails
+          show={mainCardShow}
+          close={handleClose}
+          itemType={ItemType}
+          item={focusedItem}
+        ></ItemDetails>
         {data &&
           data.data.map((item) => {
             return (
@@ -49,10 +67,9 @@ const ItemsPage = (props) => {
                 <ItemCard
                   name={item.name}
                   img={item.image}
-                  description={item.description}
                   id={item.id}
                   type={ItemType}
-                  forClicking={handleShow}
+                  forClicking={() => setFocusedItem(item)}
                 ></ItemCard>
               </Col>
             );
@@ -63,22 +80,6 @@ const ItemsPage = (props) => {
 
   return (
     <>
-      <Container fluid className={`mainItemBackground ${mainCardShow}`}>
-        <Row>
-          <Col className="text-light">
-            <Container className="mainItemContainer">
-              <Row>
-                <Col className="d-flex justify-content-end">
-                  <Button variant="outline-light x" onClick={handleClose}>
-                    <i className="bi bi-x-circle fs-1"></i>
-                  </Button>
-                </Col>
-              </Row>
-            </Container>
-          </Col>
-        </Row>
-      </Container>
-
       <Container className="itemsContainer my-5">
         <Row className="d-flex justify-content-center">
           <h2 className="text-center display-5 text-uppercase HeaderMainText">

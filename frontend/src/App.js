@@ -4,7 +4,7 @@ import "./index.css";
 // Pages
 import Home from "./pages/Home";
 import ItemsPage from "./pages/itemsPage";
-import SingleItem from "./pages/SingleItem";
+
 // Components
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
@@ -20,7 +20,6 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} exact />
               <Route path="/Items/:ItemType" element={<ItemsPage />} />
-              <Route path="Item/:type/:id" element={<SingleItem />} />
             </Routes>
           </div>
           <Footer />

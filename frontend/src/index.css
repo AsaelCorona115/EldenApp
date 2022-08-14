@@ -187,6 +187,8 @@ background: linear-gradient(0deg, rgba(242,242,242,0.13) 0%, rgba(190,148,87,0.1
   left: 0;
   height: 100%;
   z-index: 2;
+  overflow: scroll;
+  
 }
 
 .x{
@@ -196,5 +198,32 @@ background: linear-gradient(0deg, rgba(242,242,242,0.13) 0%, rgba(190,148,87,0.1
 
 
 .mainItemContainer{
+  border: solid 3px #BE9457;
+  background: rgb(242,242,242);
+  background: linear-gradient(0deg, rgba(242,242,242,0.13) 0%, rgba(190,148,87,0.19) 33%, rgba(0,0,0,0.7875525210084033) 100%);
+  box-shadow: 0 8px 32px 0 rgba(17, 18, 19, 0.2);
+  backdrop-filter: blur( 8px );
+  -webkit-backdrop-filter: blur( 8px );
+  border-radius: 5px;
+}
 
+.contentDetails{
+  font-family: "Marcellus SC";  
+}
+
+table{
+  width: 80%;
+}
+
+table, th{
+  border: solid 1px aliceblue;
+  padding-left: 15px;
+}
+
+td{
+  text-align: center;
+}
+
+.amountCell{
+  text-align: center;
 }
