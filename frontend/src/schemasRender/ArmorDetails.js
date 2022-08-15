@@ -3,10 +3,10 @@ import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 
 const ArmorDetails = (props) => {
-  const category = props.category;
-  const weight = props.weight;
-  const negation = props.negation;
-  const resistance = props.resistance;
+  const category = props.item.category;
+  const weight = props.item.weight;
+  const negation = props.item.dmgNegation;
+  const resistance = props.item.resistance;
   let uniqKey = 0;
   return (
     <>

@@ -8,7 +8,18 @@ import Button from "react-bootstrap/Button";
 // Item Types
 import AmmoDetails from "../schemasRender/AmmoDetails";
 import ArmorDetails from "../schemasRender/ArmorDetails";
-
+import AshesDetails from "../schemasRender/AshesDetails";
+import BossesDetails from "../schemasRender/BossesDetails";
+import ClassesDetails from "../schemasRender/ClassesDetails";
+import CreatureDetails from "../schemasRender/Creatures";
+import IncantationDetails from "../schemasRender/IncantationDetails";
+import Details from "../schemasRender/Details";
+import NPCDetails from "../schemasRender/NPCDetails";
+import ShieldDetails from "../schemasRender/ShieldsDetails";
+import SorceriesDetails from "../schemasRender/SorceriesDetails";
+import SpiritsDetails from "../schemasRender/SpiritsDetails";
+import TalismansDetails from "../schemasRender/TalismansDetails";
+import WeaponDetails from "../schemasRender/WeaponDetails";
 const ItemDetails = (props) => {
   const show = props.show;
   const close = props.close;
@@ -19,21 +30,77 @@ const ItemDetails = (props) => {
   switch (type) {
     case "ammos":
       contentSpecifics = () => {
-        return (
-          <AmmoDetails passive={item.passive} attackPower={item.attackPower} />
-        );
+        return <AmmoDetails item={item} />;
       };
       break;
     case "armors":
       contentSpecifics = () => {
-        return (
-          <ArmorDetails
-            category={item.category}
-            weight={item.weight}
-            negation={item.dmgNegation}
-            resistance={item.resistance}
-          />
-        );
+        return <ArmorDetails item={item} />;
+      };
+      break;
+    case "ashes":
+      contentSpecifics = () => {
+        return <AshesDetails item={item} />;
+      };
+      break;
+    case "bosses":
+      contentSpecifics = () => {
+        return <BossesDetails item={item} />;
+      };
+      break;
+    case "classes":
+      contentSpecifics = () => {
+        return <ClassesDetails item={item} />;
+      };
+      break;
+    case "creatures":
+      contentSpecifics = () => {
+        return <CreatureDetails item={item} />;
+      };
+      break;
+    case "incantations":
+      contentSpecifics = () => {
+        return <IncantationDetails item={item} />;
+      };
+      break;
+    case "items":
+      contentSpecifics = () => {
+        return <Details item={item} />;
+      };
+      break;
+    case "locations":
+      contentSpecifics = () => {
+        return null;
+      };
+      break;
+    case "npcs":
+      contentSpecifics = () => {
+        return <NPCDetails item={item} />;
+      };
+      break;
+    case "shields":
+      contentSpecifics = () => {
+        return <ShieldDetails item={item} />;
+      };
+      break;
+    case "sorceries":
+      contentSpecifics = () => {
+        return <SorceriesDetails item={item} />;
+      };
+      break;
+    case "spirits":
+      contentSpecifics = () => {
+        return <SpiritsDetails item={item} />;
+      };
+      break;
+    case "talismans":
+      contentSpecifics = () => {
+        return <TalismansDetails item={item} />;
+      };
+      break;
+    case "weapons":
+      contentSpecifics = () => {
+        return <WeaponDetails item={item} />;
       };
       break;
     default:
@@ -58,7 +125,7 @@ const ItemDetails = (props) => {
                 </Row>
                 <Row>
                   <Col className="d-flex justify-content-center">
-                    <Image src={item.image}></Image>
+                    <Image src={item.image} fluid></Image>
                   </Col>
                 </Row>
                 <Row>

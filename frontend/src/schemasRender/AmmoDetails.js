@@ -1,6 +1,6 @@
 const AmmoDetails = (props) => {
-  const passive = props.passive;
-  const attackDetails = props.attackPower;
+  const passive = props.item.passive;
+  const attackDetails = props.item.attackPower;
   let uniqKey = 0;
   return (
     <>
