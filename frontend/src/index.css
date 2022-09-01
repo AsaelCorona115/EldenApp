@@ -36,6 +36,11 @@
   line-height: 20px;
 }
 
+.signLink{
+  color: aliceblue;
+  text-decoration: underline;
+
+}
 .navLink:hover{
   text-decoration: underline;
 }
@@ -106,6 +111,10 @@ background: linear-gradient(0deg, rgba(242,242,242,0.13) 0%, rgba(190,148,87,0.1
   float: right;
   clear: both;
 }
+
+.footer{
+  border-top: 1px solid #BE9457;
+}
 .footer h1{
   font-size: 1rem;
   line-height: 1.5rem;
@@ -124,22 +133,11 @@ background: linear-gradient(0deg, rgba(242,242,242,0.13) 0%, rgba(190,148,87,0.1
   min-height: 60vh;
 }
 
-.landingCover{
-  background-color: black;
-  position: absolute;
-  left: 0%;
-  top: 0%;
-  height: 100%;
-  z-index: 1;
-  margin: auto;
-}
 
-.landingLogo{
-  height: 55vh
-}
 
-.subtitle,
-.continueButton{
+
+
+.subtitle{
   font-family: "Marcellus SC";
   border-radius: 0;
 }
@@ -172,6 +170,10 @@ background: linear-gradient(0deg, rgba(242,242,242,0.13) 0%, rgba(190,148,87,0.1
   font-family: 'Roboto', sans-serif;
 }
 
+.generalParagraph{
+  font-family: "Marellus SC";
+}
+
 .itemTypeContainer,
 .itemsContainer{
   border-radius: 12px;
@@ -189,7 +191,7 @@ background: linear-gradient(0deg, rgba(242,242,242,0.13) 0%, rgba(190,148,87,0.1
   z-index: 2;
   overflow: scroll;
   
-}
+} 
 
 .x{
   border: 0px;
@@ -226,4 +228,41 @@ td{
 
 .amountCell{
   text-align: center;
+}
+
+.loginInput{
+  margin: 30px 0px 30px 0px;
+  background-color: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #BE9457;
+  font-family: "Marcellus SC";
+  display: block;
+  clear: both;
+  width: 100%;
+  color: aliceblue;
+}
+
+fieldset{
+  border: 1px solid #BE9457;
+  padding: 10px;
+}
+
+legend{
+  color: aliceblue;
+  font-family: "Marcellus SC";
+}
+
+.loginButton{
+  font-family: "Marcellus SC";
+  border-radius: 0%;
+}
+
+.loginContainer{
+  height: 100%;
+}
+
+.loginInput:valid{
+  border: 2px solid white;
 }

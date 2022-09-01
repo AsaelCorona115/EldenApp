@@ -19,10 +19,11 @@ const ItemsPage = (props) => {
   const { ItemType } = useParams();
   //   States
   const [focusedItem, setFocusedItem] = useState(null);
+  const [focusedType, setFocusedType] = useState(null);
   const [mainCardShow, setMainCardShow] = useState("d-none");
 
   //   Setting up API url
-  const url = `https://eldenring.fanapis.com/api/${ItemType}?limit=150`;
+  const url = `http://localhost:4000/`;
   const { data, loading, error } = useFetch(url);
 
   // Close and open functions for card details
@@ -53,25 +54,29 @@ const ItemsPage = (props) => {
   const renderItems = () => {
     return (
       <>
-        <ItemDetails
-          show={mainCardShow}
-          close={handleClose}
-          itemType={ItemType}
-          item={focusedItem}
-        ></ItemDetails>
+        {data && (
+          <ItemDetails
+            show={mainCardShow}
+            close={handleClose}
+            item={focusedItem}
+            itemType={focusedType}
+          ></ItemDetails>
+        )}
+
         {data &&
-          data.data.map((item) => {
+          data.map((item) => {
             return (
               <Col key={item.id} xs={12} sm={6} lg={4} xl={3}>
                 <ItemCard
-                  name={item.name}
-                  img={item.image}
+                  name={item.properties.name}
+                  img={item.properties.image}
                   id={item.id}
-                  type={ItemType}
                   forClicking={() => {
                     setMainCardShow("d-block");
-                    setFocusedItem(item);
+                    setFocusedItem(item.properties);
+                    setFocusedType(item.itemType);
                   }}
+                  type={item.type}
                 ></ItemCard>
               </Col>
             );
@@ -85,7 +90,7 @@ const ItemsPage = (props) => {
       <Container className="itemsContainer my-5">
         <Row className="d-flex justify-content-center">
           <h2 className="text-center display-5 text-uppercase HeaderMainText">
-            {ItemType}
+            My Items
           </h2>
 
           {loading ? loadingScreen() : renderItems()}

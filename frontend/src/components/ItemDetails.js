@@ -118,8 +118,12 @@ const ItemDetails = (props) => {
               <Container className="mainItemContainer">
                 <Row>
                   <Col className="d-flex justify-content-end pt-2">
-                    <Button variant="outline-light x" onClick={close}>
-                      <i className="bi bi-x-circle fs-1"></i>
+                    <Button
+                      variant="outline-light x"
+                      onClick={close}
+                      className="fs-1 p-2 rounded rounded-circle"
+                    >
+                      X
                     </Button>
                   </Col>
                 </Row>

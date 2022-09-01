@@ -106,50 +106,6 @@ const Home = () => {
   ];
 
   const [itemType, setItemType] = useState(null);
-  const { landingState, setLandingState } = useLandingContext();
-
-  const handleContinue = () => {
-    setLandingState(false);
-  };
-  // Landing Cover Page Render
-  const landingCover = () => {
-    return (
-      // Landing Container, only visible once the page is firstly loaded.
-      <Container className="landingCover" fluid>
-        <Row>
-          <Col xs={12} className="d-flex justify-content-center">
-            <Image
-              src="https://static.bandainamcoent.eu/high/elden-ring/elden-ring/00-page-setup/eldenring_new.png"
-              fluid
-            ></Image>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} className="d-flex justify-content-center landingLogo">
-            <Image
-              src="https://i.ytimg.com/vi/BAi7TKXPpOI/maxresdefault.jpg"
-              fluid
-            ></Image>
-          </Col>
-        </Row>
-        <Row>
-          <Col
-            xs={12}
-            className="d-flex justify-content-center align-items-middle"
-          >
-            <Button
-              variant="outline-light continueButton"
-              onClick={() => {
-                handleContinue();
-              }}
-            >
-              CONTINUE
-            </Button>
-          </Col>
-        </Row>
-      </Container>
-    );
-  };
 
   const Home = () => {
     return (
@@ -211,7 +167,7 @@ const Home = () => {
     );
   };
 
-  return <>{landingState ? landingCover() : Home()}</>;
+  return Home();
 };
 
 export default Home;

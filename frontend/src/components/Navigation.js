@@ -24,11 +24,11 @@ function Navigation() {
           <Link to="/" className="offCanvasLink" onClick={handleClose}>
             <p>Explore Items</p>
           </Link>
-          <Link to="/" className="offCanvasLink" onClick={handleClose}>
+          <Link to="/MyItems" className="offCanvasLink" onClick={handleClose}>
             <p>My Items</p>
           </Link>
-          <Link to="/" className="offCanvasLink" onClick={handleClose}>
-            <p>Login / Sign-Up</p>
+          <Link to="/Login" className="offCanvasLink" onClick={handleClose}>
+            <p>Login</p>
           </Link>
         </Offcanvas.Body>
       </Offcanvas>
@@ -66,17 +66,13 @@ function Navigation() {
 
             <div className="d-none d-md-flex">
               <Link to="/" className="navLink">
-                About
-              </Link>
-              <Link to="/" className="navLink">
                 Explore <br /> Items
               </Link>
-              <Link to="/" className="navLink">
+              <Link to="/MyItems" className="navLink">
                 My <br /> Items
               </Link>
-              <Link to="/" className="navLink">
-                Login / <br />
-                Sign Up
+              <Link to="/Login" className="navLink mt-2">
+                Login
               </Link>
             </div>
           </Col>
