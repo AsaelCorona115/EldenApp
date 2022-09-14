@@ -23,9 +23,15 @@ const ItemsPage = (props) => {
 
   //   Setting up API url
   const url = `https://eldenring.fanapis.com/api/${ItemType}?limit=150`;
+
   const { data, loading, error } = useFetch(url);
 
   // Close and open functions for card details
+  const handleOpen = (item) => {
+    setMainCardShow("d-block");
+    setFocusedItem(item);
+  };
+
   const handleClose = () => {
     setMainCardShow("d-none");
   };
@@ -53,12 +59,17 @@ const ItemsPage = (props) => {
   const renderItems = () => {
     return (
       <>
-        <ItemDetails
-          show={mainCardShow}
-          close={handleClose}
-          itemType={ItemType}
-          item={focusedItem}
-        ></ItemDetails>
+        {focusedItem && (
+          <ItemDetails
+            show={mainCardShow}
+            close={handleClose}
+            itemType={ItemType}
+            item={focusedItem}
+            id={focusedItem.id}
+            databaseId={focusedItem._id}
+          ></ItemDetails>
+        )}
+
         {data &&
           data.data.map((item) => {
             return (
@@ -69,8 +80,7 @@ const ItemsPage = (props) => {
                   id={item.id}
                   type={ItemType}
                   forClicking={() => {
-                    setMainCardShow("d-block");
-                    setFocusedItem(item);
+                    handleOpen(item);
                   }}
                 ></ItemCard>
               </Col>

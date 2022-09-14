@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 // Bootstrap React Components
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/Row";
@@ -5,6 +6,8 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 
+//importing the context
+import { useSavedItemsContext } from "./customHooks/useSavedItemContext";
 // Item Types
 import AmmoDetails from "../schemasRender/AmmoDetails";
 import ArmorDetails from "../schemasRender/ArmorDetails";
@@ -25,6 +28,22 @@ const ItemDetails = (props) => {
   const close = props.close;
   const item = props.item;
   const type = props.itemType;
+  const id = props.id;
+  const [databaseId, setDatabaseId] = useState(props.databaseId);
+
+  const [isSaved, setIsSaved] = useState("");
+  const { savedItems, dispatch } = useSavedItemsContext();
+
+  useEffect(() => {
+    const fetchSavedItems = async () => {
+      const response = await fetch(`http://localhost:4000/`);
+      const json = await response.json();
+      if (response.ok) {
+        dispatch({ type: "SET_ITEMS", payload: json });
+      }
+    };
+    fetchSavedItems();
+  }, [dispatch]);
 
   let contentSpecifics = null;
   switch (type) {
@@ -109,13 +128,53 @@ const ItemDetails = (props) => {
       };
       break;
   }
+
+  const handleSave = async () => {
+    try {
+      const newItem = {
+        itemType: type,
+        id: item.id,
+        properties: item,
+      };
+
+      const response = await fetch("http://localhost:4000/", {
+        method: "POST",
+        body: JSON.stringify(newItem),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const json = await response.json();
+      if (response.ok) {
+        dispatch({ type: "SAVE_ITEM", payload: json });
+        setDatabaseId(json._id);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async () => {
+    const response = await fetch(`http://localhost:4000/${databaseId}`, {
+      method: "DELETE",
+    });
+    const json = await response.json();
+    if (response.ok) {
+      dispatch({ type: "DELETE_ITEM", payload: json });
+      close();
+    }
+  };
+
   return (
     <>
-      {item && (
+      {savedItems && (
+        // Container for the background of the item
         <Container fluid className={`mainItemBackground ${show}`}>
           <Row>
             <Col className="text-light p-5">
+              {/* Container for the actual content */}
               <Container className="mainItemContainer">
+                {/* X button row */}
                 <Row>
                   <Col className="d-flex justify-content-end pt-2">
                     <Button
@@ -127,11 +186,15 @@ const ItemDetails = (props) => {
                     </Button>
                   </Col>
                 </Row>
+
+                {/* Image Row */}
                 <Row>
                   <Col className="d-flex justify-content-center">
                     <Image src={item.image} fluid></Image>
                   </Col>
                 </Row>
+
+                {/* Content Details */}
                 <Row>
                   <Col className="contentDetails p-4">
                     <hr />
@@ -139,6 +202,43 @@ const ItemDetails = (props) => {
                     <p className="text-center fs-4">{item.description}</p>
                     <hr />
                     {contentSpecifics()}
+                  </Col>
+                </Row>
+
+                {/* Add/Delete Row */}
+                <Row className="d-flex justify-content-center mb-5">
+                  <Col
+                    className=" d-flex justify-content-around"
+                    xs={12}
+                    md={8}
+                    lg={6}
+                  >
+                    <Button
+                      variant="outline-light"
+                      onClick={handleSave}
+                      className={
+                        savedItems &&
+                        savedItems.filter((element) => element.id === id)
+                          .length > 0
+                          ? "disabled"
+                          : ""
+                      }
+                    >
+                      SAVE
+                    </Button>
+                    <Button
+                      variant="outline-light"
+                      onClick={handleDelete}
+                      className={
+                        `deleteButton` + savedItems &&
+                        savedItems.filter((element) => element.id === id)
+                          .length > 0
+                          ? ""
+                          : "disabled"
+                      }
+                    >
+                      DELETE
+                    </Button>
                   </Col>
                 </Row>
               </Container>

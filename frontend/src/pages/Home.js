@@ -8,9 +8,6 @@ import Button from "react-bootstrap/esm/Button";
 //Components
 import ItemTypeCard from "../components/ItemTypeCard";
 
-// Context
-import { useLandingContext } from "../components/customHooks/useLandingContext";
-
 const Home = () => {
   const objectTypes = [
     {

@@ -8,6 +8,7 @@ const CreatureDetails = (props) => {
   const health = props.item.healthPoints;
 
   let uniqKey = 0;
+
   return (
     <>
       <Container>
@@ -15,7 +16,8 @@ const CreatureDetails = (props) => {
           <Col>
             <p className=" fs-4 text-center">
               <span className="fw-bold">Location: </span> {location} <br />
-              <span className="fw-bold">Healt: </span> {health} <br />
+              <span className="fw-bold">Health: </span>{" "}
+              {health == undefined ? "Unknown" : health} <br />
             </p>
             <ul className="fs-4">
               <span className="fw-bold">Drops: </span>
