@@ -1,6 +1,7 @@
 // Imports
 const express = require("express");
-const router = require("./routes/items");
+const itemsRouter = require("./routes/items");
+const usersRouter = require("./routes/users");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
@@ -22,7 +23,8 @@ app.use((req, res, next) => {
 });
 
 //Routing
-app.use("", router);
+app.use("", itemsRouter);
+app.use("", usersRouter);
 
 //Connecting to the DB
 mongoose

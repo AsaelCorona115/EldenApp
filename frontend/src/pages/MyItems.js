@@ -32,7 +32,7 @@ const ItemsPage = (props) => {
     const fetchSavedItems = async () => {
       setLoading(true);
       setError(null);
-      const response = await fetch(`http://localhost:4000/`);
+      const response = await fetch(`https://eldenappbackend.herokuapp.com/`);
       const json = await response.json();
       if (response.ok) {
         setLoading(false);
