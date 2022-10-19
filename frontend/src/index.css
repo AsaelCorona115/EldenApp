@@ -25,6 +25,10 @@
   font-size: 1.5rem;
 }
 
+.offCanvasLink:hover{
+  text-decoration: underline;
+}
+
 .navLink,
 .navLink:visited{
   font-family: "Marcellus SC";

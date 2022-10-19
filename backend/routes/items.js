@@ -7,6 +7,9 @@ const router = express.Router();
 //Models
 const GeneralItem = require("../models/item");
 
+//userAuthentication
+const requireAuth = require("../middleware/requireAuth");
+
 //Controllers
 const {
   saveNewItem,
@@ -14,6 +17,8 @@ const {
   unsaveItem,
 } = require("../controllers/itemControllers");
 
+//require Authentication for all users
+router.use(requireAuth);
 //Routes
 //Get all items
 router.get("/", getAllItems);

@@ -23,8 +23,8 @@ app.use((req, res, next) => {
 });
 
 //Routing
-app.use("", itemsRouter);
-app.use("", usersRouter);
+app.use("/items", itemsRouter);
+app.use("/users", usersRouter);
 
 //Connecting to the DB
 mongoose

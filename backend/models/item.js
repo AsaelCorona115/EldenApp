@@ -52,6 +52,10 @@ const itemSchema = new Schema(
       type: properties,
       required: true,
     },
+    user_id: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

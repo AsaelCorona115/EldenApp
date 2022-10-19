@@ -5,12 +5,15 @@ const GeneralItem = require("../models/item");
 
 //Get All Items
 const getAllItems = async (req, res) => {
-  const allItems = await GeneralItem.find({}).sort({ createdAt: -1 });
+  const { _id: user_id } = req.user._id;
+  const allItems = await GeneralItem.find({ user_id }).sort({ createdAt: -1 });
   res.status(200).json(allItems);
 };
 
 //Save new item
 const saveNewItem = async (req, res) => {
+  const { _id: user_id } = req.user._id;
+  console.log(user_id);
   //Deconstructs properties from the information sent in the body of the req object
   //All objects have an item type, id, name and image
   const { itemType, id, name, image, description, properties } = req.body;
@@ -25,6 +28,7 @@ const saveNewItem = async (req, res) => {
       image,
       description,
       properties,
+      user_id,
     });
 
     //Returns a response with a status of 200 and the new created object in the body of the

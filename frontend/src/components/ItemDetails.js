@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 
 //importing the context
 import { useSavedItemsContext } from "./customHooks/useSavedItemContext";
+import { useAuthContext } from "./customHooks/useAuthContext";
 // Item Types
 import AmmoDetails from "../schemasRender/AmmoDetails";
 import ArmorDetails from "../schemasRender/ArmorDetails";
@@ -33,17 +34,27 @@ const ItemDetails = (props) => {
 
   const [isSaved, setIsSaved] = useState("");
   const { savedItems, dispatch } = useSavedItemsContext();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const fetchSavedItems = async () => {
-      const response = await fetch(`https://eldenappbackend.herokuapp.com/`);
+      const response = await fetch(
+        `https://eldenappbackend.herokuapp.com/items`,
+        {
+          headers: {
+            authorization: `bearer ${user.token}`,
+          },
+        }
+      );
       const json = await response.json();
       if (response.ok) {
         dispatch({ type: "SET_ITEMS", payload: json });
       }
     };
-    fetchSavedItems();
-  }, [dispatch]);
+    if (user) {
+      fetchSavedItems();
+    }
+  }, [dispatch, user]);
 
   let contentSpecifics = null;
   switch (type) {
@@ -137,13 +148,17 @@ const ItemDetails = (props) => {
         properties: item,
       };
 
-      const response = await fetch("https://eldenappbackend.herokuapp.com/", {
-        method: "POST",
-        body: JSON.stringify(newItem),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://eldenappbackend.herokuapp.com/items",
+        {
+          method: "POST",
+          body: JSON.stringify(newItem),
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `bearer ${user.token}`,
+          },
+        }
+      );
       const json = await response.json();
       if (response.ok) {
         dispatch({ type: "SAVE_ITEM", payload: json });
@@ -156,8 +171,11 @@ const ItemDetails = (props) => {
 
   const handleDelete = async () => {
     const response = await fetch(
-      `https://eldenappbackend.herokuapp.com/${databaseId}`,
+      `https://eldenappbackend.herokuapp.com/items/${databaseId}`,
       {
+        headers: {
+          authorization: `bearer ${user.token}`,
+        },
         method: "DELETE",
       }
     );

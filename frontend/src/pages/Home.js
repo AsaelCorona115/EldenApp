@@ -108,35 +108,6 @@ const Home = () => {
     return (
       <>
         <Container className="pt-0 pt-lg-5">
-          {/* Banner, Intro Row */}
-          <Row className="mt-sm-5">
-            <Col
-              className="d-flex align-items-center py-5"
-              xs={{ span: 12, order: 2 }}
-              md={{ span: 4, order: 1 }}
-            >
-              <Image
-                src="https://pbs.twimg.com/media/FGo2ktmWYAQN2px?format=jpg&name=4096x4096"
-                fluid
-              ></Image>
-            </Col>
-            <Col
-              xs={{ span: 12, order: 1 }}
-              md={{ span: 8, order: 2 }}
-              className="py-5 "
-            >
-              <h1 className="HeaderMainText display-4">Rise tarnished</h1>
-
-              <p className="fs-3  mt-4 text-light">
-                And be guided by grace to become an Elden Lord in the Lands
-                Between. Follow the index of Sir Gideon Ofnir, the All knowing
-                to collect all items, explore every corner of these lands and
-                come to meet any ally or adversary these lands have to offer.
-                Let the guidance of grace be brought to the Tarnished.
-              </p>
-            </Col>
-          </Row>
-
           <Row className="d-flex ">
             <h1 className="text-center HeaderSubText">Items</h1>
             <hr className="ruler" />

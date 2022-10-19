@@ -9,6 +9,7 @@ import { useEffect, useState, useRef } from "react";
 
 // Custom hooks
 import { useSavedItemsContext } from "../components/customHooks/useSavedItemContext";
+import { useAuthContext } from "../components/customHooks/useAuthContext";
 
 // Custom Components
 import ItemCard from "../components/ItemCard";
@@ -17,6 +18,7 @@ import ItemDetails from "../components/ItemDetails";
 const ItemsPage = (props) => {
   //Data from context
   const { savedItems, dispatch } = useSavedItemsContext();
+  const { user } = useAuthContext();
 
   // Pulling Item type from the url
   const { ItemType } = useParams();
@@ -32,7 +34,14 @@ const ItemsPage = (props) => {
     const fetchSavedItems = async () => {
       setLoading(true);
       setError(null);
-      const response = await fetch(`https://eldenappbackend.herokuapp.com/`);
+      const response = await fetch(
+        `https://eldenappbackend.herokuapp.com/items/`,
+        {
+          headers: {
+            authorization: `bearer ${user.token}`,
+          },
+        }
+      );
       const json = await response.json();
       if (response.ok) {
         setLoading(false);
@@ -40,7 +49,9 @@ const ItemsPage = (props) => {
         dispatch({ type: "SET_ITEMS", payload: json });
       }
     };
-    fetchSavedItems();
+    if (user) {
+      fetchSavedItems();
+    }
   }, [dispatch]);
 
   // Close and open functions for card details

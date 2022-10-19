@@ -6,13 +6,23 @@ import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useState } from "react";
-
+import { useLogout } from "./customHooks/useLogout";
+import { useAuthContext } from "./customHooks/useAuthContext";
 function Navigation() {
+  //states
   const [show, setShow] = useState(false);
+  const { user } = useAuthContext();
 
+  //logout
+  const logout = useLogout();
+  //Show handlers
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  //handleLogout
+  const handleLogout = () => {
+    logout();
+  };
   return (
     <>
       {/* Offcanvas Container */}
@@ -21,15 +31,30 @@ function Navigation() {
           <Offcanvas.Title>Menu</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body className="offCanvasBody">
-          <Link to="/" className="offCanvasLink" onClick={handleClose}>
-            <p>Explore Items</p>
-          </Link>
-          <Link to="/MyItems" className="offCanvasLink" onClick={handleClose}>
-            <p>My Items</p>
-          </Link>
-          <Link to="/Login" className="offCanvasLink" onClick={handleClose}>
-            <p>Login</p>
-          </Link>
+          {user && (
+            <div>
+              <Link to="/" className="offCanvasLink" onClick={handleClose}>
+                <p>Explore Items</p>
+              </Link>
+              <Link
+                to="/MyItems"
+                className="offCanvasLink"
+                onClick={handleClose}
+              >
+                <p>My Items</p>
+              </Link>
+              <Button variant="outline-light" onClick={handleLogout}>
+                Logout
+              </Button>
+            </div>
+          )}
+          {!user && (
+            <div>
+              <Link to="/Login" className="offCanvasLink" onClick={handleClose}>
+                <p>Login / Signup</p>
+              </Link>
+            </div>
+          )}
         </Offcanvas.Body>
       </Offcanvas>
 
@@ -65,15 +90,27 @@ function Navigation() {
             </div>
 
             <div className="d-none d-md-flex">
-              <Link to="/" className="navLink">
-                Explore <br /> Items
-              </Link>
-              <Link to="/MyItems" className="navLink">
-                My <br /> Items
-              </Link>
-              <Link to="/Login" className="navLink mt-2">
-                Login
-              </Link>
+              {user && (
+                <div className="d-flex">
+                  <Link to="/" className="navLink">
+                    Explore <br /> Items <br />
+                  </Link>
+                  <Link to="/MyItems" className="navLink">
+                    My <br /> Items
+                  </Link>
+
+                  <Button variant="outline-light" onClick={handleLogout}>
+                    Logout
+                  </Button>
+                </div>
+              )}
+              {!user && (
+                <div>
+                  <Link to="/Login" className="navLink mt-2">
+                    Login /<br /> Signup
+                  </Link>
+                </div>
+              )}
             </div>
           </Col>
         </Row>
